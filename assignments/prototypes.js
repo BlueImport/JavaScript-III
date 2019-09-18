@@ -16,9 +16,9 @@
   * destroy() // prototype method that returns: `${this.name} was removed from the game.`
 */
 
-function GameObject(gameObejectAttributes){
-  this.createdAt = gameObejectAttributes.createdAt;
-  this.dimensions = gameObejectAttributes.dimensions;
+function GameObject(gameObjectAttributes){
+  this.createdAt = gameObjectAttributes.createdAt;
+  this.dimensions = gameObjectAttributes.dimensions;
 }
 GameObject.prototype.destroy = function () {
   return `${this.name} was removed from the game`; 
@@ -30,10 +30,10 @@ GameObject.prototype.destroy = function () {
   * should inherit destroy() from GameObject's prototype
 */
 
-function CharacterStats(characterStatsAttribute){
-  this.hp = characterStatsAttribute.hp;
-  this.name = characterStatsAttribute.name; 
-  GameObject.call(this, characterStatsAttribute); 
+function CharacterStats(charStatsAttribute){
+  this.hp = charStatsAttribute.hp;
+  this.name = charStatsAttribute.name; 
+  GameObject.call(this, charStatsAttribute); 
 }
 CharacterStats.prototype = Object.create(GameObject.prototype); 
 CharacterStats.prototype.takeDamage = function () {
@@ -50,7 +50,7 @@ CharacterStats.prototype.takeDamage = function () {
   * should inherit takeDamage() from CharacterStats
 */
 
-Humanoid.prototype = Object.create(CharacterStats.prototype); 
+Humanoid.prototype = Object.create(CharStats.prototype); 
 Humanoid.prototype.greet = function() {
   return `${this.name} offers a greeting in ${this.language}`; 
 }
@@ -124,6 +124,8 @@ Humanoid.prototype.greet = function() {
   console.log(archer.greet()); // Lilith offers a greeting in Elvish.
   console.log(mage.takeDamage()); // Bruce took damage.
   console.log(swordsman.destroy()); // Sir Mustachio was removed from the game.
+
+
 
 
   // Stretch task: 
