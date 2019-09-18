@@ -50,9 +50,15 @@ CharacterStats.prototype.takeDamage = function () {
   * should inherit takeDamage() from CharacterStats
 */
 
-Humanoid.prototype = Object.create(CharStats.prototype); 
+function Humanoid (humAttributes) {
+  CharacterStats.call(this, humAttributes);
+  this.faction = humAttributes.faction;
+  this.weapons = humAttributes.weapons;
+  this.language = humAttributes.language;
+}
+Humanoid.prototype = Object.create(CharacterStats.prototype);
 Humanoid.prototype.greet = function() {
-  return `${this.name} offers a greeting in ${this.language}`; 
+  return `${this.name} offers a greeting in ${this.language}`
 }
  
 /*
@@ -60,6 +66,26 @@ Humanoid.prototype.greet = function() {
   * Instances of Humanoid should have all of the same properties as CharacterStats and GameObject.
   * Instances of CharacterStats should have all of the same properties as GameObject.
 */
+
+function Hero (goodAttributes) {
+  Humanoids.call(this, goodAttributes);
+  this.alignment = goodAttributes.alignment;
+  this.strength = goodAttributes.strength;
+}
+Hero.prototype = Object.create(Humanoid.prototype);
+Hero.prototype.attack = function() {
+  
+}
+
+function Villain (badAttributes) {
+  Humanoids.call(this, badAttributes);
+  this.misalignment = badAttributes.misalignment;
+  this.deception = badAttributes.deception;
+}
+Villain.prototype = Object.create(Humanoid.prototype);
+Villain.prototype.stabInTheBack = function() {
+
+}
 
 // Test you work by un-commenting these 3 objects and the list of console logs below:
 
